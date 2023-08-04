@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:meta/meta.dart';
 import 'package:notes_app/constants.dart';
@@ -16,9 +16,9 @@ class AddNoteCubit extends Cubit<AddNoteState> {
 
       await notesBox.add(note);
       emit(AddNoteSuccess());
-    } on Exception catch (e) {
-      // emit(AddNoteFailure(e.toString()));
-      AddNoteFailure(e.toString());
+    } catch (e) {
+      emit(AddNoteFailure(e.toString()));
+      // AddNoteFailure(e.toString());
     }
   }
 }
